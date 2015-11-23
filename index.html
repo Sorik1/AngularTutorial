@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html ng-app = "todoApp">
 <head>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-	<script type="text/javascript" src="todo.js"></script>
+	<script src="angular.min.js"></script>
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 
@@ -12,20 +11,33 @@
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+	<script type="text/javascript" src="underscore-min.js"></script>
+	<script type="text/javascript" src="underscore-min.js"></script>
+	<script type="text/javascript" src="todo.js"></script>
+	<link rel="stylesheet" href="todo.css">
 </head>
 <body>
 
-<div ng-controller = "TodoListController as todoList">
-		<span>TODO list</span>
-		
-		<ul class="unstyled">
-			<li ng-repeat="todo in todoList.todos">
-				<input type="checkbox" ng-model = "todo.done">
-				<span class = "done-{{todo.done}}">{{todo.text}}</span>
+	<h2>Todo</h2>
+	<div ng-controller="TodoListController as todoList">
+		<span class = "newLine">Total Todos: {{getTotalTodos()}}</span>
+		<span class = "newLine">Todos Done {{getDoneTodos()}}</span>
+		<span class = "newLine">Todos Not Done {{getTotalTodos() - getDoneTodos()}}</span>
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="todo in todos">
+				<input type="checkbox" ng-model="todo.done" ng-click="reorderArray()">
+				<span class="done-{{todo.done}}">{{todo.text}}</span>
 			</li>
 		</ul>
+		<form class="form-horizontal">
+			<input type="text" ng-model ="formTodoText" ng-model-instant>
+			<button class="btn btn-default " ng-click="addTodo()"><i class="glyphicon glyphicon-plus"></i> Add</button>
+		</form>
 
+		<button class="btn btn-default btn-lg" ng-click="clearCompleted()"><i class="glyphicon glyphicon-trash"></i>Clear Comleted</button>
 	</div>
 
 </body>
 </html>
+
