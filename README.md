@@ -8,6 +8,7 @@ The above configuration will generate claims (`OpowerClaims`) for you or you may
 |tnt|UTIL|
 
 In case you are interested in `DssClaims` you should pass "DSSaccountId" as one of the request parameters. List of all DSS specific parameters:
+
 |Request parameter|Example value|
 |:--:|---|
 |DSSaccountId|89132748912374981237|
